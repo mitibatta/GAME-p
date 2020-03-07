@@ -1,3 +1,4 @@
+
 class Api::SessionsController < ApplicationController
   before_action :set_user, only: :create
   def create
@@ -5,11 +6,12 @@ class Api::SessionsController < ApplicationController
       response_bad_request
     elsif @user.authenticate(password_params[:password])
       log_in @user
-      response_success(:session, :create)
+      response_success_login
     else
       response_unauthorized
     end
   end
+
 
   def destroy
     log_out
